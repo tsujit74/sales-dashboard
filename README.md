@@ -1,36 +1,73 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Sales Dashboard App
 
-## Getting Started
+This project is a simple yet effective **Sales Dashboard** built using **Next.js 15**, **TypeScript**, **Tailwind CSS**, and **Recharts**. It demonstrates atomic design principles and includes reusable chart components. The app displays sales data for the years **2022, 2023, and 2024**, with filter capabilities and chart visualization.
 
-First, run the development server:
+## 🧱 Atomic Design Structure
 
-```bash
+This project follows the **Atomic Design Principle**, with components organized as:
+src/
+  ├── components/
+  │   ├── atoms/         # Smallest components (e.g., Heading)
+  │   ├── molecules/     # Groups of atoms (e.g., Input)
+  │   └── organisms/     # Full sections (e.g., Chart)
+  ├── pages/             # Pages like /dashboard
+  ├── data/              # Mock sales data
+  ├── types/             # TypeScript interfaces
+
+---
+
+## Setup Instructions
+
+### 1. Clone the repository
+
+git clone https://github.com/tsujit74/sales-dashboard.git
+cd sales-dashboard
+
+### 2. Install dependencies
+
+npm install
+
+### 3. Run the development server
+
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 4. Open your browser
+Visit: [https://sales-dashboard-two-xi.vercel.app/](https://sales-dashboard-two-xi.vercel.app/)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 💡 Features
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- 🎯 **Sales Chart**: Displays sales for 2022, 2023, and 2024.
+- 🔍 **Sales Filter**: Input box to filter sales greater than a threshold.
+- 📊 **Bar Chart**: Visualize sales using Recharts.
+- 🧱 **Componentized**: Built with atomic structure for better scalability.
+- ⚡ **Tailwind CSS**: Clean and modern UI.
+- ☁️ **Deployable**: Easily deploy on Vercel or any platform.
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## 🔧 Technologies Used
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **Next.js 15 (App Router)**
+- **TypeScript**
+- **Tailwind CSS**
+- **Recharts**
+- **Atomic Design Architecture**
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## 📈 Future Enhancements
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- Add chart type switcher (bar, line, pie)
+- Integrate real-time sales API
+- Add authentication with roles (Admin/User)
+- Dashboard summary cards (total sales, year-on-year growth)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+## 🧑‍💻 Author
+Sujit Thakur
+
+---
+
+## 📄 License
+
+This project is for educational and internship assessment purposes only.
