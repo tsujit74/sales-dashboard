@@ -2,20 +2,6 @@
 
 This project is a simple yet effective **Sales Dashboard** built using **Next.js 15**, **TypeScript**, **Tailwind CSS**, and **Recharts**. It demonstrates atomic design principles and includes reusable chart components. The app displays sales data for the years **2022, 2023, and 2024**, with filter capabilities and chart visualization.
 
-## 🧱 Atomic Design Structure
-
-This project follows the **Atomic Design Principle**, with components organized as:
-src/
-  ├── components/
-  │   ├── atoms/         # Smallest components (e.g., Heading)
-  │   ├── molecules/     # Groups of atoms (e.g., Input)
-  │   └── organisms/     # Full sections (e.g., Chart)
-  ├── pages/             # Pages like /dashboard
-  ├── data/              # Mock sales data
-  ├── types/             # TypeScript interfaces
-
----
-
 ## Setup Instructions
 
 ### 1. Clone the repository
