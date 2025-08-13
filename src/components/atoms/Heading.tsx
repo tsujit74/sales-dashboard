@@ -1,6 +1,13 @@
-import React from 'react';
+"use client";
+import React, { useEffect, useState } from "react";
 
 export default function Heading() {
+  const [date, setDate] = useState("");
+
+  useEffect(() => {
+    setDate(new Date().toLocaleDateString());
+  }, []);
+
   return (
     <header className="flex flex-col sm:flex-row justify-between items-center mb-8 px-4 py-2">
       <div>
@@ -8,7 +15,7 @@ export default function Heading() {
         <p className="text-sm text-slate-400">Sales Analytics for 2022-2024</p>
       </div>
       <span className="text-sm text-slate-400 mt-2 sm:mt-0">
-        Last Updated: 8/11/2025
+        Last Updated: {date}
       </span>
     </header>
   );
