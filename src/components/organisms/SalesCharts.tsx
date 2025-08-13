@@ -16,20 +16,29 @@ import {
 } from "recharts";
 import { SalesRecord } from "@/types/index";
 
-const getProductSalesData = (data: SalesRecord[]) => {
-  if (!data || data.length === 0) return [];
-  const productSalesMap = data.reduce((acc, current) => {
-    acc[current.product] = (acc[current.product] || 0) + current.sales;
-    return acc;
-  }, {} as { [key: string]: number });
+// const getProductSalesData = (data: SalesRecord[]) => {
+//   if (!data || data.length === 0) return [];
+//   const productSalesMap = data.reduce((acc, current) => {
+//     acc[current.product] = (acc[current.product] || 0) + current.sales;
+//     return acc;
+//   }, {} as { [key: string]: number });
 
-  return Object.keys(productSalesMap).map((product) => ({
-    name: product,
-    value: productSalesMap[product],
+//   return Object.keys(productSalesMap).map((product) => ({
+//     name: product,
+//     value: productSalesMap[product],
+//   }));
+// };
+
+const YEAR_COLORS = ["#4F46E5", "#10B981", "#F59E0B", "#EF4444"];
+
+const getYearlySalesData = (data: SalesRecord[]) =>
+  [2022, 2023, 2024].map((yr, index) => ({
+    name: yr.toString(),
+    value: data
+      .filter((item) => item.year === yr)
+      .reduce((sum, item) => sum + item.sales, 0),
+    color: YEAR_COLORS[index % YEAR_COLORS.length],
   }));
-};
-
-const COLORS = ["#4F46E5", "#10B981", "#F59E0B", "#EF4444"];
 
 export default function SalesChart({
   data,
@@ -48,7 +57,7 @@ export default function SalesChart({
 
   const totalDataCount = data.filter((item) => item.year === year).length;
   const visibleDataCount = filteredData.length;
-  const productData = getProductSalesData(filteredData);
+  // const productData = getProductSalesData(filteredData);
 
   const chartHeight = chartType === "pie" ? 280 : 260;
 
@@ -86,11 +95,12 @@ export default function SalesChart({
         );
 
       case "pie":
+        const yearlyData = getYearlySalesData(data); // use all data, not filtered by selected year
         return (
           <ResponsiveContainer width="100%" height={chartHeight}>
             <PieChart>
               <Pie
-                data={productData}
+                data={yearlyData}
                 dataKey="value"
                 nameKey="name"
                 cx="50%"
@@ -100,14 +110,11 @@ export default function SalesChart({
                   `${name} ${((percent ?? 0) * 100).toFixed(0)}%`
                 }
               >
-                {productData.map((_, index) => (
-                  <Cell
-                    key={`cell-${index}`}
-                    fill={COLORS[index % COLORS.length]}
-                  />
+                {yearlyData.map((entry, index) => (
+                  <Cell key={index} fill={entry.color} />
                 ))}
               </Pie>
-              <Tooltip contentStyle={{ borderRadius: "8px" }} />
+              <Tooltip contentStyle={{ borderRadius: 8 }} />
               <Legend />
             </PieChart>
           </ResponsiveContainer>
