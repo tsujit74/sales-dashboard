@@ -15,6 +15,17 @@ interface KPISectionProps {
 }
 
 export default function KPISection({ data }: KPISectionProps) {
+  if (!data || data.length === 0) {
+    return (
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-6">
+        <KPI title="Total Sales" value="0" color="bg-white-500" Icon={FaShoppingCart} />
+        <KPI title="Average Sales" value="0" color="bg-white-500" Icon={FaChartLine} />
+        <KPI title="Best Product" value="N/A" color="bg-white-500" Icon={FaTrophy} />
+        <KPI title="Top Month" value="N/A" subtitle="Sales: 0" color="bg-white-500" Icon={FaCalendarAlt} />
+      </div>
+    );
+  }
+
   const totalSales = data.reduce((sum, item) => sum + item.sales, 0);
   const avgSales = (totalSales / data.length).toFixed(2);
 
@@ -26,6 +37,7 @@ export default function KPISection({ data }: KPISectionProps) {
   data.forEach((item) => {
     monthSalesMap[item.month] = (monthSalesMap[item.month] || 0) + item.sales;
   });
+
   const highestMonth = Object.entries(monthSalesMap).sort((a, b) => b[1] - a[1])[0];
 
   return (
@@ -35,8 +47,8 @@ export default function KPISection({ data }: KPISectionProps) {
       <KPI title="Best Product" value={bestProduct.product} color="bg-white-500" Icon={FaTrophy} />
       <KPI
         title="Top Month"
-        value={highestMonth[0]}
-        subtitle={`Sales: ${highestMonth[1]}`}
+        value={highestMonth ? highestMonth[0] : "N/A"}
+        subtitle={`Sales: ${highestMonth ? highestMonth[1] : 0}`}
         color="bg-white-500"
         Icon={FaCalendarAlt}
       />
