@@ -8,14 +8,15 @@ import SalesChart from "@/components/organisms/SalesCharts";
 import KPISection from "@/components/organisms/KPISection";
 
 export default function Dashboard() {
-  const [threshold, setThreshold] = useState(0);
-  const filteredData = salesData.filter((s) => s.sales > threshold);
+  const [threshold, setThreshold] = useState<number>(0);
+
+  const filteredData = salesData.filter((s) => s.sales > (threshold || 0));
 
   return (
     <main className="min-h-screen bg-gray-100 p-0">
       <Heading />
       <FilterInput threshold={threshold} onChange={setThreshold} />
-      <KPISection data={filteredData}/>
+      <KPISection data={filteredData} />
       <SalesChart data={filteredData} />
     </main>
   );
